@@ -5,15 +5,14 @@ const active = ref(0);
 
 <template>
   <div>
+    <!-- nav标签里面的内容在浏览器中更容易被检索到 -->
     <nav class="header">去中心化投票APP</nav>
     <main>
       <router-view></router-view>
     </main>
     <van-tabbar route v-model="active" active-color="#ee742f">
       <van-tabbar-item to="/" icon="gem-o">分发票权</van-tabbar-item>
-      <van-tabbar-item to="/account" icon="balance-list-o"
-        >账户信息</van-tabbar-item
-      >
+      <van-tabbar-item to="/account" icon="balance-list-o">账户信息</van-tabbar-item>
       <van-tabbar-item to="/board" icon="orders-o">投票看板</van-tabbar-item>
     </van-tabbar>
   </div>

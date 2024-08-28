@@ -2,7 +2,7 @@
 import useEthers from "@/hooks/useEthers"; // 导入转换后的 useEthers 钩子
 import { ref, onMounted } from "vue";
 
-const { voteContract, getAccount } = useEthers(); // 移除了 web3，因为我们不再需要它
+const { voteContract, getAccount } = useEthers(); //使用useEthers钩子
 
 // 看板信息
 const board = ref([]);
@@ -11,7 +11,7 @@ const board = ref([]);
 const account = ref("");
 
 const getBoardInfo = async () => {
-  const result = await voteContract.getBoardInfo(); // 直接调用合约方法，不需要 .call()
+  const result = await voteContract.getBoardInfo(); // 直接调用合约方法
   board.value = result;
 };
 
@@ -28,8 +28,8 @@ const vote = async (index) => {
 
 const initEventListen = () => {
   // 使用 ethers.js 的事件监听
-  voteContract.on("VoteSuccess", (from, voteIndex, voteValue) => {
-    console.log("智能合约触发的事件：", from, voteIndex, voteValue);
+  voteContract.on("VoteSuccess", () => {
+    console.log("智能合约触发的事件：");
   });
 };
 
@@ -40,7 +40,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <!-- 模板部分不需要修改，因为模板与 JavaScript 逻辑无关 -->
   <div class="box3">
     <van-divider>投票看板</van-divider>
     <van-cell :title="item.name" icon="shop-o" v-for="(item, index) in board" :key="index">
